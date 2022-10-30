@@ -1,12 +1,13 @@
 {
   "name": "ts-express",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev src/index.ts"
   },
   "dependencies": {
+    "@types/mysql": "^2.15.21",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
