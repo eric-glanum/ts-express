@@ -1,4 +1,4 @@
-GET http://localhost:3000/
+GET http://localhost:3000/getUsers
 
 ###
 
@@ -7,3 +7,17 @@ GET http://localhost:3000/getUser/:id
 ###
 
 POST http://localhost:3000/createUser
+Content-Type: application/json
+
+{
+    "name": "eric",
+    "email": "e@e.fr"
+}
+
+###
+
+DELETE http://localhost:3000/deleteUsers
+
+###
+
+DELETE http://localhost:3000/deleteUser/:id
