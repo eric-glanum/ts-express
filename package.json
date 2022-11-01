@@ -7,6 +7,7 @@
     "start": "ts-node-dev src/index.ts"
   },
   "dependencies": {
+    "@prisma/client": "^4.5.0",
     "@types/mysql": "^2.15.21",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

@@ -1,8 +1,8 @@
 const express = require("express");
-import { Response, Request } from "express";
 import mysql from "mysql";
 import dbConfig from "../src/db/db.config";
 
+import indexRouter from "./routes/index";
 const app = express();
 
 const connection = mysql.createConnection({
@@ -11,9 +11,7 @@ const connection = mysql.createConnection({
   password: dbConfig.PASSWORD,
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.json({ message: "server started" });
-});
+app.use("/", indexRouter);
 
 app.listen(3000, () => {
   console.log("connected to server");
