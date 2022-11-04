@@ -2,7 +2,7 @@ GET http://localhost:3000/getUsers
 
 ###
 
-GET http://localhost:3000/getUser/:id
+GET http://localhost:3000/getUser/1
 
 ###
 
@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
     "name": "eric",
-    "email": "e@e.fr"
+    "email": "e@p.fr"
 }
 
 ###
@@ -20,4 +20,4 @@ DELETE http://localhost:3000/deleteUsers
 
 ###
 
-DELETE http://localhost:3000/deleteUser/:id
+DELETE http://localhost:3000/deleteUser/3

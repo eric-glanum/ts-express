@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
 import mysql from "mysql";
 import dbConfig from "../src/db/db.config";
 import indexRouter from "./routes/index";
+
 const app = express();
 
 app.use(express.json());
@@ -17,14 +18,14 @@ const connection = mysql.createConnection({
   password: dbConfig.PASSWORD,
 });
 
-connection.connect((err) => {
+connection.connect((err: any) => {
   err
-    ? console.log("Error[connection.connect] : ", err)
+    ? console.log("Error[connection.connect] : ", err.message)
     : console.log("Succesfully connected to DB");
   connection.query(
     `CREATE DATABASE IF NOT EXISTS ${dbConfig.DB}`,
     (err, res) => {
-      err ? console.log("Error[connection.query] : ", err) : res;
+      err ? console.log("Error[connection.query] : ", err.message) : res;
     }
   );
 });
