@@ -1,23 +1,34 @@
+#################################### GET ALL USERS ##################
 GET http://localhost:3000/getUsers
 
-###
+#################################### GET ONE USER ###################
 
-GET http://localhost:3000/getUser/1
+GET http://localhost:3000/getUser/3
 
-###
+#################################### CREATE USER ####################
 
 POST http://localhost:3000/createUser
 Content-Type: application/json
 
 {
     "name": "eric",
-    "email": "e@p.fr"
+    "email": "e@e.fr"
 }
 
-###
+#################################### DELETE USERS ###################
 
 DELETE http://localhost:3000/deleteUsers
 
-###
+#################################### DELETE ONE USER ################
 
-DELETE http://localhost:3000/deleteUser/3
+DELETE http://localhost:3000/deleteUser/2
+
+#################################### UPDATE USER ####################
+
+PUT http://localhost:3000/updateUser/6
+Content-Type: application/json
+
+{
+    "newName": "eric modified",
+    "newEmail": "modif@modif.fr"
+}
