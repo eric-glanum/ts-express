@@ -16,4 +16,13 @@ model User {
   updatedAt  DateTime  @updatedAt
   email      String    @unique
   name       String
+  projects   Project[]
+}
+
+model Project {
+  id         Int       @default(autoincrement()) @id
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  users      User[]
+  name       String
 }
