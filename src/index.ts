@@ -2,7 +2,6 @@ import express from 'express';
 import mysql from 'mysql';
 import dbConfig from '../src/db/db.config';
 import indexRouter from './routes/index';
-import { Express } from 'express-serve-static-core';
 
 const app = express();
 
@@ -24,3 +23,5 @@ connection.connect((err: any) => {
 app.listen(3000, () => {
   console.log('connected to server');
 });
+
+export default app;
