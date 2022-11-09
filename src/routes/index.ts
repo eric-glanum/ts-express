@@ -1,8 +1,7 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { Response, Request } from 'express';
-import { IUser } from '../types';
-import { isForInStatement } from 'typescript';
+
 const router = express.Router();
 const prisma = new PrismaClient();
 
