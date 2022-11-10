@@ -3,10 +3,11 @@ import mysql from 'mysql';
 import dbConfig from '../src/db/db.config';
 import indexRouter from './routes/index';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 
 const app = express();
-
 app.use(express.json());
+app.use(cookieParser());
 app.use('/', indexRouter);
 app.use(
   session({

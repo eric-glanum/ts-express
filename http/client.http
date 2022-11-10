@@ -3,7 +3,7 @@ GET http://localhost:3000/getUsers
 
 #################################### GET ONE USER ###################
 
-GET http://localhost:3000/getUser/3
+GET http://localhost:3000/getUser/11
 
 #################################### CREATE USER ####################
 
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "name": "eric",
-    "email": "e@e.fr"
+    "email": "g@p.fr"
 }
 
 #################################### DELETE USERS ###################

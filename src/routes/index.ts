@@ -1,9 +1,15 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import { Response, Request } from 'express';
+import { IUser } from '../types';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 const prisma = new PrismaClient();
+router.get('/', (req: Request, res: Response) => {
+  console.log(req.session);
+  res.send('hello session tut');
+});
 
 router.get('/getUsers', async (req: Request, res: Response): Promise<void> => {
   try {
@@ -19,12 +25,15 @@ router.get('/getUsers', async (req: Request, res: Response): Promise<void> => {
 router.get('/getUser/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const id: any = parseInt(req.params.id);
-    const user = await prisma.user.findUnique({
+    const user: any = await prisma.user.findUnique({
       where: {
         id,
       },
     });
-    user ? res.status(200).json(user) : res.status(404).json({ message: 'user unknown' });
+    const token = jwt.sign({ userid: user.id }, 'supersecret', {
+      expiresIn: '1h',
+    });
+    user ? res.status(200).json({ user, token }) : res.status(404).json({ message: 'user unknown' });
   } catch (err: any) {
     res.status(500).json({ message: 'internal server error', err: err.message });
   }
@@ -33,12 +42,14 @@ router.get('/getUser/:id', async (req: Request, res: Response): Promise<void> =>
 router.post('/createUser', async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email } = req.body;
-    const newUser = await prisma.user.create({
+    const newUser: IUser = await prisma.user.create({
       data: {
         name: name,
         email: email,
       },
     });
+    // req.session.user;
+    //console.log('session', req.session.user);
     res.status(200).json(newUser);
   } catch (err: any) {
     res.status(500).json({ message: 'internal server error', err: err.message });
