@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
     "name": "eric",
-    "email": "g@p.fr"
+    "email": "h@p.fr"
 }
 
 #################################### DELETE USERS ###################

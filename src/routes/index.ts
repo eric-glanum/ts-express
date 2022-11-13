@@ -6,8 +6,8 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 const prisma = new PrismaClient();
+
 router.get('/', (req: Request, res: Response) => {
-  console.log(req.session);
   res.send('hello session tut');
 });
 
@@ -33,6 +33,8 @@ router.get('/getUser/:id', async (req: Request, res: Response): Promise<void> =>
     const token = jwt.sign({ userid: user.id }, 'supersecret', {
       expiresIn: '1h',
     });
+    req.cookies.id = token;
+    console.log('🚀 ~ file: index.ts ~ line 37 ~ router.get ~ req.cookies.id', req.cookies.id);
     user ? res.status(200).json({ user, token }) : res.status(404).json({ message: 'user unknown' });
   } catch (err: any) {
     res.status(500).json({ message: 'internal server error', err: err.message });
@@ -48,8 +50,6 @@ router.post('/createUser', async (req: Request, res: Response): Promise<void> =>
         email: email,
       },
     });
-    // req.session.user;
-    //console.log('session', req.session.user);
     res.status(200).json(newUser);
   } catch (err: any) {
     res.status(500).json({ message: 'internal server error', err: err.message });

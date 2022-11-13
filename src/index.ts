@@ -4,16 +4,39 @@ import dbConfig from '../src/db/db.config';
 import indexRouter from './routes/index';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import cookieSession from 'cookie-session';
+
+class User {
+  id!: number;
+  createdAt: Date;
+  updatedAt: Date;
+  email: string;
+  name: string;
+}
+
+declare module 'express-session' {
+  interface SessionData {
+    user: User;
+  }
+}
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
 app.use('/', indexRouter);
+// app.use(
+//   session({
+//     secret: 'a4f8071f-c873-4447-8ee2',
+//     resave: false,
+//     saveUninitialized: false,
+//   })
+// );
 app.use(
-  session({
-    secret: 'supersecretsession',
-    resave: false,
-    saveUninitialized: false,
+  cookieSession({
+    name: 'cookie dough',
+    keys: ['hello-cookies'],
+    maxAge: 24 * 60 * 60 * 1000,
   })
 );
 
